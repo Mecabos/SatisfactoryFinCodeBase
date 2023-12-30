@@ -1,4 +1,5 @@
-local pattern = "[%w%.]*$"
+local MY_REQUIRE_PATTERN = "[%w%.]*$"
+local REPO_URL = "https://raw.githubusercontent.com/Mecabos/SatisfactoryFinCodeBase/main/"
 function _REQ(workingDirectory, filePath, pCall, isString, libURL, skipSearch, executeAfterDownload)
     local fs, content, fileName, env = filesystem, "", "", {}
     if (not isString) then
@@ -49,11 +50,11 @@ function _REQ(workingDirectory, filePath, pCall, isString, libURL, skipSearch, e
             end
         end
     end
-    env["require"]   = function(fip, pca) return _REQ(isString and workingDirectory or fileName:sub(1, table.pack(fileName:find(pattern))[1] - 1), fip, pca) end
-    env["include"]   = function(str, pca) return _REQ(isString and workingDirectory or fileName:sub(1, table.pack(fileName:find(pattern))[1] - 1), str, pca, true) end
-    env["import"]    = function(fip, lib, alp, pca) return _REQ(isString and workingDirectory or fileName:sub(1, table.pack(fileName:find(pattern))[1] - 1), fip, pca, false, lib, alp) end
+    env["require"]   = function(fip, pca) return _REQ(isString and workingDirectory or fileName:sub(1, table.pack(fileName:find(MY_REQUIRE_PATTERN))[1] - 1), fip, pca) end
+    env["include"]   = function(str, pca) return _REQ(isString and workingDirectory or fileName:sub(1, table.pack(fileName:find(MY_REQUIRE_PATTERN))[1] - 1), str, pca, true) end
+    env["import"]    = function(fip, lib, alp, pca) return _REQ(isString and workingDirectory or fileName:sub(1, table.pack(fileName:find(MY_REQUIRE_PATTERN))[1] - 1), fip, pca, false, lib, alp) end
     env["FILE"]      = isString and workingDirectory or fileName
-    env["DIR"]       = isString and workingDirectory or fileName:sub(1, table.pack(fileName:find(pattern))[1] - 1)
+    env["DIR"]       = isString and workingDirectory or fileName:sub(1, table.pack(fileName:find(MY_REQUIRE_PATTERN))[1] - 1)
     setmetatable(env, {__index = _G})
 
     local compiledFunc = load(isString and filePath or content, isString and workingDirectory or fileName, nil, env)
@@ -73,8 +74,11 @@ function _REQ(workingDirectory, filePath, pCall, isString, libURL, skipSearch, e
     
 end
 function require(filePath, pCall, executeAfterDownload)
-    return _REQ(filePath:sub(1, table.pack(filePath:find(pattern))[1] - 1), filePath:sub(filePath:find(pattern)), pCall, false, nil, nil, executeAfterDownload)
+    return _REQ(filePath:sub(1, table.pack(filePath:find(MY_REQUIRE_PATTERN))[1] - 1), filePath:sub(filePath:find(MY_REQUIRE_PATTERN)), pCall, false, nil, nil, executeAfterDownload)
 end
 function import(filePath, libURL, alwaysPull, pCall, executeAfterDownload)
-    return _REQ(filePath:sub(1, table.pack(filePath:find(pattern))[1] - 1), filePath:sub(filePath:find(pattern)), pCall, false, libURL, alwaysPull, executeAfterDownload)
+    return _REQ(filePath:sub(1, table.pack(filePath:find(MY_REQUIRE_PATTERN))[1] - 1), filePath:sub(filePath:find(MY_REQUIRE_PATTERN)), pCall, false, libURL, alwaysPull, executeAfterDownload)
 end
+
+local pathTable = import("/init/scripts/pathTable.lua", REPO_URL .. "fullCode/scripts/pathTable.lua", true, false,false)
+print(pathTable.Scripts.Helpers.tableHelper)

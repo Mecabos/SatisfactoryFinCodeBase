@@ -1,3 +1,5 @@
+--[[
+
 local pattern = "[%w%.]*$"
 function _REQ(workingDirectory, filePath, pCall, isString, libURL, skipSearch)
     local fs, content, fileName, env = filesystem, "", "", {}
@@ -64,3 +66,5 @@ end
 function import(filePath, libURL, alwaysPull, pCall)
     return _REQ(filePath:sub(1, table.pack(filePath:find(pattern))[1] - 1), filePath:sub(filePath:find(pattern)), pCall, false, libURL, alwaysPull)
 end
+
+]]---

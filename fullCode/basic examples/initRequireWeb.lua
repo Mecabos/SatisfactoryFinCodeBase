@@ -9,18 +9,14 @@ function InitWithDefaultMount ()
     end
 end
 
+-- Mounts the default drive to the root directory 
 InitWithDefaultMount()
 
-
+-- This is the require function that will be used to load libraries
 if (not filesystem.isFile("/myRequire.lua")) then
-    local request = computer.getPCIDevices(findClass("FINInternetCard"))[1]:request("https://raw.githubusercontent.com/NicholasScott1337/FINUtilities/main/requiry.lua", "GET", "")
+    local request = computer.getPCIDevices(findClass("FINInternetCard"))[1]:request("https://raw.githubusercontent.com/Mecabos/SatisfactoryFinCodeBase/main/lib/myLib/myRequire.lua", "GET", "")
     local f = filesystem.open("/myRequire.lua", "w")
     f:write(table.pack(request:await())[2]) f:close()
   end
   
 filesystem.doFile("/myRequire.lua")
-
-
---Example use of require
-local mylib = require('/componentHelpers.lua')
-print(mylib.getSingleComponentRefByNik("sign rss"))

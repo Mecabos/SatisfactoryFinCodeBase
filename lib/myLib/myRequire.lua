@@ -116,4 +116,4 @@ function import(filePath, libURL, alwaysPull, pCall, executeAfterDownload)
 end
 
 local pathTable = import(PATH_TABLE_PATH, REPO_URL..PATH_TABLE_PATH, true, false, false)
---print(pathTable.Scripts.Helpers.tableHelper)
+print(pathTable.Scripts.Helpers.tableHelper)

@@ -15,6 +15,4 @@ InitWithDefaultMount()
 --Need to put it manually, just to avoid bringing it from the web
 filesystem.doFile("/myRequire.lua")
 
---Example use of require
-local mylib = require('/componentHelpers.lua')
-print(mylib.getSingleComponentRefByNik("sign rss"))
+print(PathTable.Scripts.Helpers.fin.componentHelper)

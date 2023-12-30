@@ -115,5 +115,5 @@ function import(filePath, libURL, alwaysPull, pCall, executeAfterDownload)
         filePath:sub(filePath:find(MY_REQUIRE_PATTERN)), pCall, false, libURL, alwaysPull, executeAfterDownload)
 end
 
-require("/"..PATH_TABLE_PATH, REPO_URL..PATH_TABLE_PATH, false)
+import("/"..PATH_TABLE_PATH, REPO_URL..PATH_TABLE_PATH, true, false, false)
 filesystem.doFile(PATH_TABLE_PATH)

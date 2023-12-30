@@ -77,6 +77,7 @@ function require(filePath, pCall, executeAfterDownload)
     return _REQ(filePath:sub(1, table.pack(filePath:find(MY_REQUIRE_PATTERN))[1] - 1), filePath:sub(filePath:find(MY_REQUIRE_PATTERN)), pCall, false, nil, nil, executeAfterDownload)
 end
 function import(filePath, libURL, alwaysPull, pCall, executeAfterDownload)
+    print("requested : " .. libURL)
     return _REQ(filePath:sub(1, table.pack(filePath:find(MY_REQUIRE_PATTERN))[1] - 1), filePath:sub(filePath:find(MY_REQUIRE_PATTERN)), pCall, false, libURL, alwaysPull, executeAfterDownload)
 end
 

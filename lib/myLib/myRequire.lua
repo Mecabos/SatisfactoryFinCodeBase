@@ -115,5 +115,6 @@ function import(filePath, libURL, alwaysPull, pCall, executeAfterDownload)
         filePath:sub(filePath:find(MY_REQUIRE_PATTERN)), pCall, false, libURL, alwaysPull, executeAfterDownload)
 end
 
-local pathTable = import(PATH_TABLE_PATH, REPO_URL .. PATH_TABLE_PATH, true, false, false)
+local pathTableRepoPath = REPO_URL..PATH_TABLE_PATH
+local pathTable = import(PATH_TABLE_PATH, pathTableRepoPath, true, false, false)
 print(pathTable.Scripts.Helpers.tableHelper)

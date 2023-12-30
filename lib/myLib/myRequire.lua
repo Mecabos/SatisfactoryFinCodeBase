@@ -1,6 +1,6 @@
-local PATH_TABLE_PATH = "/common/pathTable.lua"
-local MY_REQUIRE_PATTERN = "[%w%.]*$"
 local REPO_URL = "https://raw.githubusercontent.com/Mecabos/SatisfactoryFinCodeBase/main/"
+local PATH_TABLE_PATH = "common/pathTable.lua"
+local MY_REQUIRE_PATTERN = "[%w%.]*$"
 function _REQ(workingDirectory, filePath, pCall, isString, libURL, skipSearch, executeAfterDownload)
     local fs, content, fileName, env = filesystem, "", "", {}
     if (not isString) then
@@ -115,6 +115,5 @@ function import(filePath, libURL, alwaysPull, pCall, executeAfterDownload)
         filePath:sub(filePath:find(MY_REQUIRE_PATTERN)), pCall, false, libURL, alwaysPull, executeAfterDownload)
 end
 
-local pathTableRepoPath = REPO_URL..PATH_TABLE_PATH
-local pathTable = import(PATH_TABLE_PATH, pathTableRepoPath, true, false, false)
+local pathTable = import(PATH_TABLE_PATH, REPO_URL..PATH_TABLE_PATH, true, false, false)
 print(pathTable.Scripts.Helpers.tableHelper)

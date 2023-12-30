@@ -62,7 +62,7 @@ function _REQ(workingDirectory, filePath, pCall, isString, libURL, skipSearch, e
                     fi:write(content)
                     fi:close()
                 else
-                    err("Couldn't create the file requested!")
+                    err("Couldnt create the file requested!")
                 end
             else
                 err("No File Found!" .. filePath)
@@ -92,7 +92,7 @@ function _REQ(workingDirectory, filePath, pCall, isString, libURL, skipSearch, e
         if (pCall) then
             return pcall(compiledFunc)
         else
-            return compiledFunc()
+        	return compiledFunc()
         end
     else
         if (pCall) then
@@ -115,5 +115,4 @@ function import(filePath, libURL, alwaysPull, pCall, executeAfterDownload)
         filePath:sub(filePath:find(MY_REQUIRE_PATTERN)), pCall, false, libURL, alwaysPull, executeAfterDownload)
 end
 
-import(PATH_TABLE_PATH, REPO_URL..PATH_TABLE_PATH, true, false, true)
-print(PathTable.Scripts.Helpers.tableHelper)
+import("/"..PATH_TABLE_PATH, REPO_URL..PATH_TABLE_PATH, true, false, true)

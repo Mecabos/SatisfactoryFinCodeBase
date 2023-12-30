@@ -1,7 +1,8 @@
 PathTable = {
     ["Scripts"] = {
         ["Helpers"] = {
-            ["tableHelper"] = {"helpers/myHelpers/tableHelper.lua"}
+            ["tableHelper"] = "helpers/myHelpers/tableHelper.lua"
+            
 }
     }
 }
